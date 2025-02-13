@@ -13,7 +13,7 @@ export const userService = {
         return await res.json();
     },
     getUserById: async (id: string): Promise<IUser> => {
-        const res = await fetch(`https://dummyjson.com/auth/users/${id}`);
+        const res = await fetch(`https://dummyjson.com/users/${id}`);
         return res.json();
     }
 };
