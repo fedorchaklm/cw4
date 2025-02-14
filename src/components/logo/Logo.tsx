@@ -6,8 +6,10 @@ type LogoType = {
     alt: string;
 };
 
-export const Logo: FC<LogoType> = ({img, alt}) => {
+const Logo: FC<LogoType> = ({img, alt}) => {
     return (
         <img className="logo" src={img} alt={alt}/>
     );
-}
+};
+
+export default Logo;

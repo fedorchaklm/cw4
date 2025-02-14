@@ -1,28 +1,33 @@
-import {NextRequest, NextResponse} from "next/server";
+import {NextRequest, NextResponse} from 'next/server'
+import {cookies} from 'next/headers'
 import {getCookie} from "cookies-next";
-import {cookies} from "next/headers";
+import {isTokenExpired} from "@/services/api.service";
 
-const middleware = async (request: NextRequest) => {
-    if (!request.nextUrl.pathname.startsWith('/auth')) {
-        const accessToken = await getCookie('accesstoken', {cookies}) as string;
-        // const refreshToken = await getCookie('refreshtoken', {cookies});
-        console.log(accessToken);
+const protectedRoutes = ['/', 'recipes', '/users', '/users/[userId]', 'recipes/[recipeId]'];
+// const publicRoutes = ['/login'];
 
-        const response = NextResponse.next({
-            headers: {
-                'Authorization': 'Bearer ' + accessToken,
-            },
-        })
-        console.log('>', 'protected', request.url);
-        return response;
+const checkIsProtectedRoute = (pathname: string) => {
+    return protectedRoutes.some(route => {
+        const regex = new RegExp(`^${route.replace(/\[.*?\]/g, '.*')}$`);
+        return regex.test(pathname);
+    });
+};
+
+export default async function middleware(req: NextRequest) {
+    const path = req.nextUrl.pathname;
+    console.log('>', {path});
+    const isProtectedRoute = checkIsProtectedRoute(path);
+    console.log('>', {isProtectedRoute});
+    const accessToken = await getCookie('accesstoken', {cookies}) as string | undefined;
+    console.log('>', accessToken);
+    if (isProtectedRoute && !accessToken || isProtectedRoute && typeof accessToken === 'string' && isTokenExpired(accessToken)) {
+        return NextResponse.redirect(new URL('/login', req.nextUrl))
     }
-    console.log('auth');
+    return NextResponse.next()
+}
 
-
-};
-
+// Routes Middleware should not run on
 export const config = {
-    matcher: '/:path*'
-};
+    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+}
 
-export default middleware;

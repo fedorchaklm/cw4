@@ -5,7 +5,7 @@ import {cookies} from "next/headers";
 import {setCookie} from "cookies-next";
 import {IUserWithTokens} from "@/models/IUserWithTokens";
 import {redirect} from "next/navigation";
-import {isRedirectError} from "next/dist/client/components/redirect-error";
+// import {isRedirectError} from "next/dist/client/components/redirect-error";
 
 type StateType = {
     formData?: IUserWithTokens;
@@ -19,18 +19,23 @@ export const loginUser = async (prevState: StateType, formData: FormData): Promi
 
     try {
         const userWithTokens: IUserWithTokens = await authService.login(user);
-        await setCookie('accesstoken', JSON.stringify(userWithTokens.accessToken), {cookies});
-        await setCookie('refreshtoken', JSON.stringify(userWithTokens.refreshToken), {cookies});
+        await setCookie('accesstoken', userWithTokens.accessToken, {cookies});
+        await setCookie('refreshtoken', userWithTokens.refreshToken, {cookies});
         prevState.formData = userWithTokens;
-        redirect('/');
+        // redirect('/');
     } catch (e) {
-        if (isRedirectError(e)) {
-            throw e;
-        }
+        // if (isRedirectError(e)) {
+        //     throw e;
+        // }
         if (e instanceof Error) {
-            console.log('>', e.message);
-            return {
-                errors: e.message,
+            if (e.message === 'Request failed with status code 400') {
+                return {
+                    errors: 'Invalid credentials',
+                }
+            } else {
+                return {
+                    errors: 'something went wrong',
+                }
             }
         } else {
             return {
@@ -38,4 +43,5 @@ export const loginUser = async (prevState: StateType, formData: FormData): Promi
             }
         }
     }
+    redirect('/');
 };
