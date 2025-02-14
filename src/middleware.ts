@@ -3,7 +3,7 @@ import {cookies} from 'next/headers'
 import {getCookie} from "cookies-next";
 import {isTokenExpired} from "@/services/api.service";
 
-const protectedRoutes = ['/', 'recipes', '/users', '/users/[userId]', 'recipes/[recipeId]'];
+const protectedRoutes = ['recipes', '/users', '/users/[userId]', 'recipes/[recipeId]'];
 // const publicRoutes = ['/login'];
 
 const checkIsProtectedRoute = (pathname: string) => {

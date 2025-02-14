@@ -8,6 +8,16 @@ export const Menu = async () => {
     const currentUser = await userService.getCurrentAuthUser();
     console.log(currentUser);
 
+    if (!currentUser) {
+        return (
+            <ul className='menu'>
+                <li className='menu-item'>
+                    <Link href='/login'>Login</Link>
+                </li>
+            </ul>
+        );
+    }
+
     return (
         <div className='flex items-center justify-between'>
             <ul className='menu'>

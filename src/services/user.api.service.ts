@@ -35,9 +35,14 @@ export const userService = {
         const {data: user} = await axiosInstance.get<IUser>(`auth/users/${id}`);
         return user;
     },
-    getCurrentAuthUser: async (): Promise<IUser> => {
-        const {data: currentUser} = await axiosInstance.get<IUser>(`auth/me`);
-        return currentUser;
+    getCurrentAuthUser: async (): Promise<IUser | null> => {
+        try {
+            const {data: currentUser} = await axiosInstance.get<IUser>(`auth/me`);
+            return currentUser;
+        } catch (error) {
+            console.log('> error', error);
+            return null;
+        }
     }
 };
 
