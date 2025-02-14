@@ -24,11 +24,13 @@ export const Search: FC = () => {
     const submit = (searchData: SearchDataType) => {
         console.log(searchData);
         const params = new URLSearchParams(searchParams);
+        params.set('page', '1');
         if (searchData) {
             params.set('search', searchData.search);
         } else {
-            params.delete('search');
+            params.set('search', '');
         }
+        console.log(`${pathname}?${params.toString()}`);
         replace(`${pathname}?${params.toString()}`);
         reset();
     };
@@ -40,9 +42,11 @@ export const Search: FC = () => {
                 <div className='flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none'>
                     <img className='search-img' src='/assets/search.svg' alt='Search'/>
                 </div>
-                <input type='search' id='search' placeholder='Search...' {...register('search')} required defaultValue={searchParams.get('search')?.toString()}/>
+                <input type='search' id='search' placeholder='Search...' {...register('search')}
+                       defaultValue={searchParams.get('search')?.toString()}/>
                 <button type='submit' className='searchBtn'>Search</button>
             </div>
         </form>
     );
 }
+

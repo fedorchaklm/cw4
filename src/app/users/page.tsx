@@ -1,5 +1,6 @@
 import {Metadata} from "next";
-import {UsersList} from "@/components/users-list/UsersList";
+import {Menu} from "@/components/menu/Menu";
+import UsersList from "@/components/users-list/UsersList";
 
 export const metadata: Metadata = {
     title: 'Users page',
@@ -8,7 +9,10 @@ export const metadata: Metadata = {
 
 const UsersPage = async () => {
     return (
-        <UsersList/>
+        <div className='flex flex-col'>
+            <Menu/>
+            <UsersList/>
+        </div>
     );
 };
 
