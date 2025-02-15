@@ -19,7 +19,7 @@ export const userService = {
             const {data: currentUser} = await axiosInstance.get<IUser>(`auth/me`);
             return currentUser;
         } catch (error) {
-            console.log('> error', error);
+            console.log( error);
             return null;
         }
     }
