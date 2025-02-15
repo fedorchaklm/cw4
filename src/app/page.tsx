@@ -1,6 +1,7 @@
 import {userService} from "@/services/user.api.service";
 import Menu from "@/components/menu/Menu";
 import Link from "next/link";
+import Image from 'next/image';
 
 export default async function Home() {
     const currentUser = await userService.getCurrentAuthUser();
@@ -11,7 +12,7 @@ export default async function Home() {
                 <Menu/>
                 <div
                     className='text-white text-3xl flex flex-col justify-center items-center w-full m-auto gap-8 px-4 mt-20 max-w-xl text-center'>
-                    <img src={'/assets/burger.jpg'} alt='burger' className='rounded-circle'/>
+                    <Image src='/assets/burger.jpg' alt='burger' className='rounded-circle' width={200} height={100}/>
                     <h1>Welcome to our site – Ultimate Recipe Collection!</h1>
                     <p className='text-2xl'>Looking for delicious recipes? You’ve come to the right place! Here you’ll
                         find
