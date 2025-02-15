@@ -23,7 +23,7 @@ const UsersPage: FC<UsersPageType> = async ({searchParams}) => {
     const sp = await searchParams;
     console.log({sp});
     const page = sp?.page || 1;
-    const q = sp?.search || '';
+    const q = sp?.q || '';
     const users = await userService.getUsersByPage(Number(page), q);
 
     return (
