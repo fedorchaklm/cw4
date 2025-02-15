@@ -10,6 +10,7 @@ import './UserList.css';
 import {NotFound} from "../not-found/NotFound";
 
 const UsersList: FC = async () => {
+    // console.log('>', props);
     const users = await userService.getUsersByPage(1, '');
 // console.log('>', users.users.length);
     // const onSubmit = (searchData: SearchDataType) => {
