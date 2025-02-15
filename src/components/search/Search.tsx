@@ -15,7 +15,7 @@ type SearchDataType = {
 
 export const Search: FC = () => {
     const {register, handleSubmit, reset} = useForm<SearchDataType>({
-        mode: 'all'
+        mode: 'onChange'
     });
     const searchParams = useSearchParams();
     const pathname = usePathname();

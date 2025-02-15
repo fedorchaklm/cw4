@@ -5,6 +5,7 @@ import {IUsersResponseModel} from "@/models/IUsersResponseModel";
 
 export const userService = {
     getUsersByPage: async (page: number, searchParam: string): Promise<IUsersResponseModel | null> => {
+        console.log('> getUsersByPage', page, searchParam);
         const limit = limitOfUsersByPage;
         const skip: number = limit * page - limit;
         try {
