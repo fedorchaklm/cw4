@@ -15,7 +15,6 @@ export const metadata: Metadata = {
     description: 'Users page description'
 };
 
-
 type UsersPageType = {
     searchParams: Promise<{ [key: string]: string | undefined }>
 };
@@ -24,8 +23,8 @@ const UsersPage: FC<UsersPageType> = async ({searchParams}) => {
     const sp = await searchParams;
     console.log({sp});
     const page = sp?.page || 1;
-    const search = sp?.search || '';
-    const users = await userService.getUsersByPage(Number(page), search);
+    const q = sp?.search || '';
+    const users = await userService.getUsersByPage(Number(page), q);
 
     return (
         <div className='flex flex-col'>

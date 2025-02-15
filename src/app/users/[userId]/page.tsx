@@ -3,8 +3,8 @@ import {FC} from "react";
 import {UserDetails} from "@/components/user-details/UserDetails";
 
 export const metadata: Metadata = {
-    title: 'Users page',
-    description: 'Users page description'
+    title: 'User page',
+    description: 'User page description'
 };
 
 type UserPage = {

@@ -1,0 +1,11 @@
+.recipe {
+    @apply flex flex-col items-center gap-2 border-solid border-black border-2 py-2 px-2 mb-3 w-full min-w-52 rounded-lg bg-white text-black;
+}
+
+.detailsBtn {
+    @apply px-2 py-2 bg-black text-white text-sm leading-tight rounded-lg;
+}
+
+.recipe:hover {
+    @apply bg-gray-700 text-white cursor-pointer;
+}

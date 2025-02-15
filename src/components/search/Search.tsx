@@ -26,9 +26,9 @@ export const Search: FC = () => {
         const params = new URLSearchParams(searchParams);
         params.set('page', '1');
         if (searchData) {
-            params.set('search', searchData.search);
+            params.set('q', searchData.search);
         } else {
-            params.set('search', '');
+            params.set('q', '');
         }
         console.log(`${pathname}?${params.toString()}`);
         replace(`${pathname}?${params.toString()}`);
