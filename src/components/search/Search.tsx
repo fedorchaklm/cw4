@@ -4,10 +4,8 @@ import {useForm} from "react-hook-form";
 import {FC} from "react";
 import './Search.css';
 import {useSearchParams, usePathname, useRouter} from "next/navigation";
-
-type SearchDataType = {
-    search: string
-};
+import {SearchDataType} from "@/models/SearchDataType";
+import Image from 'next/image';
 
 const Search: FC = () => {
     const {register, handleSubmit, reset} = useForm<SearchDataType>({
@@ -35,7 +33,7 @@ const Search: FC = () => {
             <label htmlFor='search' className='search-label'>Search</label>
             <div className='relative'>
                 <div className='flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none'>
-                    <img className='search-img' src='/assets/search.svg' alt='Search'/>
+                    <Image className='search-img' src='/assets/search.svg' alt='Search' width={20} height={20}/>
                 </div>
                 <input type='search' id='search' placeholder='Search...' {...register('search')}
                        defaultValue={searchParams.get('search')?.toString()}/>

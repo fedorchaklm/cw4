@@ -18,7 +18,6 @@ export const generateMetadata = async ({params}: RecipePageType): Promise<Metada
 
 const RecipePage: FC<RecipePageType> = async ({params}) => {
     const {recipeId} = await params;
-    console.log('>', recipeId);
 
     return (
         <>

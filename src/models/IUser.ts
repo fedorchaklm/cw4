@@ -1,8 +1,8 @@
-import {IAddress} from "./IAddress.ts";
-import {ICompany} from "./ICompany.ts";
-import {IHair} from "./IHair.ts";
-import {IBank} from "./IBank.ts";
-import {ICrypto} from "./ICrypto.ts";
+import {IHair} from "@/models/IHair";
+import {IAddress} from "@/models/IAddress";
+import {IBank} from "@/models/IBank";
+import {ICompany} from "@/models/ICompany";
+import {ICrypto} from "@/models/ICrypto";
 
 export default interface IUser {
     id: number;

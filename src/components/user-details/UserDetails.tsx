@@ -6,6 +6,7 @@ import {formatDate} from "@/helpers/helpers";
 import {recipeService} from "@/services/recipe.api.service";
 import Recipe from "@/components/recipe/Recipe";
 import {IRecipe} from "@/models/IRecipe";
+import Image from 'next/image';
 
 type UserDetailsType = {
     userId: string;
@@ -13,14 +14,13 @@ type UserDetailsType = {
 
 const UserDetails: FC<UserDetailsType> = async ({userId}) => {
     const user: IUser = await userService.getUserById(userId);
-    console.log('>', user);
     const userRecipes = await recipeService.getUserRecipes(userId);
 
     return (
         <div className='user-wrap'>
             <div className='flex flex-col sm:flex-row justify-center gap-10'>
                 <div>
-                    <img className='w-80 min-w-20' src={user.image} alt={user.lastName}/>
+                    <Image src={user.image} alt={user.lastName} width={800} height={800}/>
                 </div>
                 <div className='flex flex-col gap-4 px-4'>
                     <h1 className='text-3xl'>Information about {user.firstName} {user.lastName}</h1>

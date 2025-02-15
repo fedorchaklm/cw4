@@ -12,7 +12,7 @@ export default async function Home() {
                 <Menu/>
                 <div
                     className='text-white text-3xl flex flex-col justify-center items-center w-full m-auto gap-8 px-4 mt-20 max-w-xl text-center'>
-                    <Image src='/assets/burger.jpg' alt='burger' className='rounded-circle' width={200} height={100}/>
+                    <Image src='/assets/burger.jpg' alt='burger' className='rounded-circle' width={600} height={600}/>
                     <h1>Welcome to our site – Ultimate Recipe Collection!</h1>
                     <p className='text-2xl'>Looking for delicious recipes? You’ve come to the right place! Here you’ll
                         find

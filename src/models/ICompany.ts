@@ -1,4 +1,4 @@
-import {IAddress} from "./IAddress.ts";
+import {IAddress} from "@/models/IAddress";
 
 export interface ICompany {
     department: string;

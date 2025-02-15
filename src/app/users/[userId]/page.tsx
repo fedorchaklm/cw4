@@ -18,7 +18,7 @@ export const generateMetadata = async ({params}: UserPageType): Promise<Metadata
 
 const UserPage: FC<UserPageType> = async ({params}) => {
     const {userId} = await params;
-    console.log('>', userId);
+
     return (
         <>
             <Menu/>

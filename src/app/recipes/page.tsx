@@ -31,7 +31,6 @@ const RecipesPage: FC<RecipesPageType> = async ({searchParams}) => {
         recipes = await recipeService.getRecipesByTag(tag, Number(page));
     } else {
         recipes = await recipeService.getRecipesByPage(Number(page), q);
-        console.log(recipes)
     }
 
     return (
