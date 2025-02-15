@@ -1,7 +1,9 @@
 import './NotFound.css';
 
-export const NotFound = () => {
+const NotFound = () => {
     return (
         <p className='not-found'> Nothing found for the query</p>
     );
-}
+};
+
+export default NotFound;

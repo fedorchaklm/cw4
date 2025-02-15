@@ -2,7 +2,6 @@ import axios from "axios";
 import {getCookie} from "cookies-next";
 import {cookies} from "next/headers";
 import {jwtDecode, JwtPayload} from "jwt-decode";
-// import {authService} from "@/services/auth.api.service";
 
 const baseUrl = 'https://dummyjson.com';
 
@@ -60,18 +59,6 @@ export const isTokenExpired = (token: string): boolean => {
 //     async (error) => {
 //         if (error.response.message === 'Token Expired!') {
 //             await authService.refreshToken();
-//         }
-//         return Promise.reject(error);
-//     }
-// );
-
-// axiosInstance.interceptors.response.use(
-//     (response) => {
-//         return response;
-//     },
-//     (error) => {
-//         if (error.response && error.response.status === 401) {
-//             window.location.href = '/login';
 //         }
 //         return Promise.reject(error);
 //     }

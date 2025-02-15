@@ -9,11 +9,7 @@ type SearchDataType = {
     search: string
 };
 
-// type SearchType = {
-//     onSubmit: (searchData: SearchDataType) => void;
-// };
-
-export const Search: FC = () => {
+const Search: FC = () => {
     const {register, handleSubmit, reset} = useForm<SearchDataType>({
         mode: 'onChange'
     });
@@ -22,15 +18,14 @@ export const Search: FC = () => {
     const {replace} = useRouter();
 
     const submit = (searchData: SearchDataType) => {
-        console.log(searchData);
         const params = new URLSearchParams(searchParams);
         params.set('page', '1');
+        params.set('tag', '');
         if (searchData) {
             params.set('q', searchData.search);
         } else {
             params.set('q', '');
         }
-        console.log(`${pathname}?${params.toString()}`);
         replace(`${pathname}?${params.toString()}`);
         reset();
     };
@@ -48,5 +43,8 @@ export const Search: FC = () => {
             </div>
         </form>
     );
-}
+};
+
+export default Search;
+
 

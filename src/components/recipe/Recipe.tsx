@@ -7,11 +7,13 @@ type RecipeType = {
     recipe: IRecipe;
 };
 
-export const Recipe: FC<RecipeType> = ({recipe}) => {
+const Recipe: FC<RecipeType> = ({recipe}) => {
 
     return (
         <Link href={`/recipes/${recipe.id}`} className='recipe'>
             <p>{recipe.name}</p>
         </Link>
     );
-}
+};
+
+export default Recipe;

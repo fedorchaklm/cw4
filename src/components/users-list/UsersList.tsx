@@ -1,28 +1,16 @@
 import {FC} from "react";
 import {userService} from "@/services/user.api.service";
 import IUser from "@/models/IUser";
-import {User} from "@/components/user/User";
-import {Pagination} from "@/components/pagination/Pagination";
+import User from "@/components/user/User";
+import Pagination from "@/components/pagination/Pagination";
 import {getMaxPages} from "@/helpers/helpers";
 import {limitOfUsersByPage} from "@/constants/constants";
-import {Search} from "@/components/search/Search";
+import Search from "@/components/search/Search";
 import './UserList.css';
-import {NotFound} from "../not-found/NotFound";
+import NotFound from "../not-found/NotFound";
 
 const UsersList: FC = async () => {
-    // console.log('>', props);
     const users = await userService.getUsersByPage(1, '');
-// console.log('>', users.users.length);
-    // const onSubmit = (searchData: SearchDataType) => {
-    //     console.log('>', searchData);
-    //     setQuery({q: searchData.search, page: '1'});
-    // };
-
-    // useEffect(() => {
-    //     const page = query.get('page') || '1';
-    //     const q = query.get('q') || '';
-    //     dispatch(userSliceActions.loadUsers({page: Number(page), searchParam: q}));
-    // }, [query]);
 
     return (
         <div className='list-wrap'>

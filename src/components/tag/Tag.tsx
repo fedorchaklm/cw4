@@ -13,11 +13,8 @@ const Tag: FC<TagType> = ({tag}) => {
     const pathname = usePathname();
     const {replace} = useRouter();
 
-    // const [query, setQuery] = useSearchParams();
     const onClick = () => {
-        // setQuery({...Object.fromEntries(query.entries()), page: '1', tag: tag});
         const params = new URLSearchParams();
-        console.log(tag);
         params.set('page', '1');
         params.set('tag', tag);
 

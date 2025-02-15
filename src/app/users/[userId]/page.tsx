@@ -1,21 +1,29 @@
 import {Metadata} from "next";
 import {FC} from "react";
-import {UserDetails} from "@/components/user-details/UserDetails";
+import UserDetails from "@/components/user-details/UserDetails";
+import Menu from "@/components/menu/Menu";
 
-export const metadata: Metadata = {
-    title: 'User page',
-    description: 'User page description'
-};
-
-type UserPage = {
+type UserPageType = {
     params: Promise<{ userId: string }>
 };
 
-const UserPage: FC<UserPage> = async ({params}) => {
+export const generateMetadata = async ({params}: UserPageType): Promise<Metadata> => {
+    const {userId} = await params;
+
+    return {
+        title: `User page ${userId} `,
+        description: 'User page description'
+    }
+};
+
+const UserPage: FC<UserPageType> = async ({params}) => {
     const {userId} = await params;
     console.log('>', userId);
     return (
-        <UserDetails userId={userId}/>
+        <>
+            <Menu/>
+            <UserDetails userId={userId}/>
+        </>
     );
 };
 

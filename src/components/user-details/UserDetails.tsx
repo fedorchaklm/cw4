@@ -3,14 +3,18 @@ import {FC} from "react";
 import {userService} from "@/services/user.api.service";
 import IUser from "@/models/IUser";
 import {formatDate} from "@/helpers/helpers";
+import {recipeService} from "@/services/recipe.api.service";
+import Recipe from "@/components/recipe/Recipe";
+import {IRecipe} from "@/models/IRecipe";
 
 type UserDetailsType = {
     userId: string;
 };
 
-export const UserDetails: FC<UserDetailsType> = async ({userId}) => {
+const UserDetails: FC<UserDetailsType> = async ({userId}) => {
     const user: IUser = await userService.getUserById(userId);
     console.log('>', user);
+    const userRecipes = await recipeService.getUserRecipes(userId);
 
     return (
         <div className='user-wrap'>
@@ -30,11 +34,13 @@ export const UserDetails: FC<UserDetailsType> = async ({userId}) => {
                     <hr className='h-px my-8 bg-white border-0'/>
                 </div>
             </div>
-            {/*<div className='flex flex-col justify-center gap-10 w-full px-4'>*/}
-            {/*    <h2 className='text-2xl'>{user.firstName}`s recipes:</h2>*/}
-            {/*    {userRecipes.length > 0 ? userRecipes.map((recipe: IRecipe) =>*/}
-            {/*        <Recipe key={recipe.id} recipe={recipe}/>) : <p>No recipes yet</p>}*/}
-            {/*</div>*/}
+            <div className='flex flex-col justify-center gap-10 w-full px-4'>
+                <h2 className='text-2xl'>{user.firstName}`s recipes:</h2>
+                {userRecipes.length > 0 ? userRecipes.map((recipe: IRecipe) =>
+                    <Recipe key={recipe.id} recipe={recipe}/>) : <p>No recipes yet</p>}
+            </div>
         </div>
     );
-}
+};
+
+export default UserDetails;

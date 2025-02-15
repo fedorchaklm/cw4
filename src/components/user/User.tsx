@@ -7,11 +7,13 @@ type UserType = {
     user: IUser;
 };
 
-export const User: FC<UserType> = ({user}) => {
+const User: FC<UserType> = ({user}) => {
 
     return (
         <Link href={`/users/${user.id}`} className='user'>
             <p>{user.id} {user.firstName} {user.lastName}</p>
         </Link>
     );
-}
+};
+
+export default User;

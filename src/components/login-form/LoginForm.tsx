@@ -8,7 +8,7 @@ import {LoginSchema} from "@/validation/LoginSchema";
 import {joiResolver} from "@hookform/resolvers/joi";
 import {loginUser} from "@/server-actions/serverActions";
 
-export const LoginForm: FC = () => {
+const LoginForm: FC = () => {
     const {register, formState: {errors, isValid}} = useForm<LoginDataType>({
         mode: 'all', resolver: joiResolver(LoginSchema)
     });
@@ -37,4 +37,6 @@ export const LoginForm: FC = () => {
             </form>
         </div>
     );
-}
+};
+
+export default LoginForm;

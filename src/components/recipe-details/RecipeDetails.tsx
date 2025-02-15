@@ -8,7 +8,7 @@ type RecipeDetailsType = {
     recipeId: string;
 };
 
-export const RecipeDetails: FC<RecipeDetailsType> = async ({recipeId}) => {
+const RecipeDetails: FC<RecipeDetailsType> = async ({recipeId}) => {
     const recipe: IRecipe = await recipeService.getRecipeById(recipeId);
     console.log('>', recipe);
 
@@ -26,4 +26,6 @@ export const RecipeDetails: FC<RecipeDetailsType> = async ({recipeId}) => {
             <Link href={`/users/${recipe.userId}`} className='details'>About recipe's author</Link>
         </div>
     );
-}
+};
+
+export default RecipeDetails;

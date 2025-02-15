@@ -2,11 +2,9 @@ import './Menu.css';
 import Link from "next/link";
 import {userService} from "@/services/user.api.service";
 import Logo from "@/components/logo/Logo";
-// import {Logo} from "@/components/logo/Logo";
 
-export const Menu = async () => {
+const Menu = async () => {
     const currentUser = await userService.getCurrentAuthUser();
-    console.log(currentUser);
 
     if (!currentUser) return;
 
@@ -31,4 +29,6 @@ export const Menu = async () => {
             </div>
         </div>
     );
-}
+};
+
+export default Menu;

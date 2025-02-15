@@ -1,5 +1,5 @@
 import {userService} from "@/services/user.api.service";
-import {Menu} from "@/components/menu/Menu";
+import Menu from "@/components/menu/Menu";
 import Link from "next/link";
 
 export default async function Home() {
