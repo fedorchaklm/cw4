@@ -1,9 +1,9 @@
 import './TagList.css';
-import {Tag} from "@/components/tag/Tag";
+import Tag from "@/components/tag/Tag";
 import {recipeService} from "@/services/recipe.api.service";
 
 const TagsList = async () => {
-    const tags: Array<string> = await recipeService.getTagsOfRecipes();
+    const tags = await recipeService.getTagsOfRecipes();
 
     return (
         <div className='tag'>
