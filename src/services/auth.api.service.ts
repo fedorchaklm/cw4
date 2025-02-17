@@ -4,6 +4,7 @@ import {axiosInstance} from "@/services/api.service";
 import {ITokensPair} from "@/models/ITokensPair";
 import {deleteCookie, getCookie, setCookie} from "cookies-next";
 import {cookies} from "next/headers";
+import IUser from "@/models/IUser";
 
 export const authService = {
     login: async (loginData: LoginDataType): Promise<IUserWithTokens> => {
@@ -15,11 +16,23 @@ export const authService = {
     },
     refreshToken: async (): Promise<ITokensPair> => {
         const refreshToken = await getCookie('refreshtoken', {cookies});
-        const {data} = await axiosInstance.post<ITokensPair>('/auth/refresh', {refreshToken});
+        const res = await axiosInstance.post<ITokensPair>('/auth/refresh', {refreshToken});
+        if (res.status !== 200) {
+            throw new Error('error');
+        }
         await deleteCookie('accesstoken', {cookies});
         await deleteCookie('refreshtoken', {cookies});
-        await setCookie('accesstoken', data.accessToken, {cookies});
-        await setCookie('refreshtoken', data.refreshToken, {cookies});
-        return data;
+        console.log(res.data.accessToken, res.data.refreshToken)
+        await setCookie('accesstoken', res.data.accessToken, {cookies});
+        await setCookie('refreshtoken', res.data.refreshToken, {cookies});
+        return res.data;
+    },
+    getCurrentAuthUser: async (): Promise<IUser> => {
+        const res = await axiosInstance.get<IUser>(`auth/me`);
+
+        if (res.status !== 200) {
+            throw new Error('error');
+        }
+        return res.data;
     }
 }

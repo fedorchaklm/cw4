@@ -18,9 +18,10 @@ const Search: FC = () => {
     const submit = (searchData: SearchDataType) => {
         const params = new URLSearchParams(searchParams);
         params.set('page', '1');
-        params.set('tag', '');
+        // params.set('tag', '');
         if (searchData) {
             params.set('q', searchData.search);
+            params.delete('tag');
         } else {
             params.set('q', '');
         }

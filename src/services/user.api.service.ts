@@ -7,21 +7,12 @@ export const userService = {
     getUsersByPage: async (page: number, searchParam: string): Promise<IUsersResponseModel> => {
         const limit = limitOfUsersByPage;
         const skip: number = limit * page - limit;
-        const {data} = await axiosInstance.get<IUsersResponseModel>(`auth/users/search?skip=${skip}&limit=${limit}&q=${searchParam}`);
+        const {data} = await axiosInstance.get<IUsersResponseModel>(`users/search?skip=${skip}&limit=${limit}&q=${searchParam}`);
         return data;
     },
     getUserById: async (id: string): Promise<IUser> => {
-        const {data: user} = await axiosInstance.get<IUser>(`auth/users/${id}`);
+        const {data: user} = await axiosInstance.get<IUser>(`users/${id}`);
         return user;
-    },
-    getCurrentAuthUser: async (): Promise<IUser | null> => {
-        try {
-            const {data: currentUser} = await axiosInstance.get<IUser>(`auth/me`);
-            return currentUser;
-        } catch (error) {
-            console.log( error);
-            return null;
-        }
     }
 };
 

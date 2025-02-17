@@ -5,6 +5,7 @@ import {cookies} from "next/headers";
 import {setCookie} from "cookies-next";
 import {IUserWithTokens} from "@/models/IUserWithTokens";
 import {redirect} from "next/navigation";
+import {isRedirectError} from "next/dist/client/components/redirect-error";
 
 type StateType = {
     formData?: IUserWithTokens;
@@ -18,10 +19,16 @@ export const loginUser = async (prevState: StateType, formData: FormData): Promi
 
     try {
         const userWithTokens: IUserWithTokens = await authService.login(user);
-        await setCookie('accesstoken', userWithTokens.accessToken, {cookies});
-        await setCookie('refreshtoken', userWithTokens.refreshToken, {cookies});
+        const {accessToken, refreshToken, ...rest} = userWithTokens;
+        await setCookie('accesstoken', accessToken, {cookies});
+        await setCookie('refreshtoken', refreshToken, {cookies});
+        await setCookie('currentUser', rest, {cookies});
         prevState.formData = userWithTokens;
+        redirect('/');
     } catch (e) {
+        if (isRedirectError(e)) {
+            throw e;
+        }
         if (e instanceof Error) {
             if (e.message === 'Request failed with status code 400') {
                 return {
@@ -38,5 +45,4 @@ export const loginUser = async (prevState: StateType, formData: FormData): Promi
             }
         }
     }
-    redirect('/');
 };
