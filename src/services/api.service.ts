@@ -1,6 +1,6 @@
 import axios from "axios";
-// import {getCookie} from "cookies-next";
-// import {cookies} from "next/headers";
+import {getCookie} from "cookies-next";
+import {cookies} from "next/headers";
 import {jwtDecode, JwtPayload} from "jwt-decode";
 // import {authService} from "@/services/auth.api.service";
 // import {authService} from "@/services/auth.api.service";
@@ -13,17 +13,18 @@ export const axiosInstance = axios.create({
     headers: {"Content-Type": "application/json"},
 });
 
-// axiosInstance.interceptors.request.use(async (request) => {
-//     if (request.method?.toUpperCase() === "GET") {
-//         const accessToken = await getCookie('accesstoken', {cookies});
-//
-//         if (accessToken) {
-//             request.headers.Authorization = 'Bearer ' + accessToken;
-//             request.withCredentials = true;
-//         }
-//     }
-//     return request;
-// });
+axiosInstance.interceptors.request.use(async (request) => {
+    if (request.method?.toUpperCase() === "GET") {
+        const accessToken = await getCookie('accesstoken', {cookies});
+        console.log(accessToken);
+
+        if (accessToken) {
+            request.headers.Authorization = 'Bearer ' + accessToken;
+            request.withCredentials = true;
+        }
+    }
+    return request;
+});
 
 export const isTokenExpired = (token: string): boolean => {
     const decodedData: JwtPayload = jwtDecode(token);
