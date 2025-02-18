@@ -17,17 +17,17 @@ export const metadata: Metadata = {
 };
 
 type UsersPageType = {
-    searchParams: Promise<{ [key: string]: string | undefined }>
+    searchParams: Promise<{ [key: string]: string | undefined }>;
 };
 
 const UsersPage: FC<UsersPageType> = async ({searchParams}) => {
-    console.log(await searchParams);
     const sp = await searchParams;
+    console.log({sp});
     const page = sp?.page || 1;
     const q = sp?.q || '';
     console.log(q)
     const users = await userService.getUsersByPage(Number(page), q);
-    console.log(users);
+
     return (
         <div className='flex flex-col'>
             <Menu/>

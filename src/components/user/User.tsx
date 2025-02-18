@@ -17,3 +17,4 @@ const User: FC<UserType> = ({user}) => {
 };
 
 export default User;
+

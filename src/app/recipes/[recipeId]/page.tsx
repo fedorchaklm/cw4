@@ -4,7 +4,7 @@ import RecipeDetails from "@/components/recipe-details/RecipeDetails";
 import Menu from "@/components/menu/Menu";
 
 type RecipePageType = {
-    params: Promise<{ recipeId: string }>
+    params: Promise<{ recipeId: string }>;
 };
 
 export const generateMetadata = async ({params}: RecipePageType): Promise<Metadata> => {

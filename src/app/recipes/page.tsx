@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 type RecipesPageType = {
-    searchParams: Promise<{ [key: string]: string | undefined }>
+    searchParams: Promise<{ [key: string]: string | undefined }>;
 };
 
 const RecipesPage: FC<RecipesPageType> = async ({searchParams}) => {
