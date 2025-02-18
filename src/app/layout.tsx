@@ -21,9 +21,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({children}: PropsWithChildren) {
     return (
         <html lang="en">
-        <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
         </body>
         </html>
