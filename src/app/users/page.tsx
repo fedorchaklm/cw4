@@ -9,8 +9,6 @@ import NotFound from "@/components/not-found/NotFound";
 import {userService} from "@/services/user.api.service";
 import UsersList from "@/components/users-list/UsersList";
 
-// export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
     title: 'Users page',
     description: 'Users page description'
@@ -22,10 +20,8 @@ type UsersPageType = {
 
 const UsersPage: FC<UsersPageType> = async ({searchParams}) => {
     const sp = await searchParams;
-    console.log({sp});
     const page = sp?.page || 1;
     const q = sp?.q || '';
-    console.log(q)
     const users = await userService.getUsersByPage(Number(page), q);
 
     return (

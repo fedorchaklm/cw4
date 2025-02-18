@@ -10,8 +10,6 @@ import Menu from "@/components/menu/Menu";
 import TagsList from "@/components/tags-list/TagsList";
 import RecipesList from "@/components/recipes-list/RecipesList";
 
-// export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
     title: 'Recipes page',
     description: 'Recipes page description'
