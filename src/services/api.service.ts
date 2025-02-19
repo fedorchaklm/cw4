@@ -13,7 +13,6 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(async (request) => {
     if (request.method?.toUpperCase() === "GET") {
         const accessToken = await getCookie('accessToken', {cookies});
-        console.log({accessToken});
 
         if (accessToken) {
             request.headers.Authorization = 'Bearer ' + accessToken;
