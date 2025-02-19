@@ -1,16 +1,10 @@
 import './Menu.css';
 import Link from "next/link";
-import {getCookie} from "cookies-next";
-import {cookies} from "next/headers";
 import Logo from "@/components/logo/Logo";
+import {getCurrentUser} from "@/helpers/helpers";
 
 const Menu = async () => {
-    const res = await getCookie('currentUser', {cookies}) as string;
-    console.log('menu', res);
-    let currentUser;
-    if (res) {
-        currentUser = JSON.parse(res);
-    }
+    const currentUser = await getCurrentUser();
 
     return (
         <div className='flex items-center justify-between'>

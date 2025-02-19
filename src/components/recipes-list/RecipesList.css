@@ -1,7 +1,3 @@
-/*.recipe-list-container {*/
-/*    @apply flex flex-col items-center gap-2 py-4 text-xl w-full;*/
-/*}*/
-
 .recipe-list {
     @apply flex flex-col items-center gap-2 my-2 w-1/3 text-black;
 }

@@ -20,8 +20,8 @@ export const loginUser = async (prevState: StateType, formData: FormData): Promi
     try {
         const userWithTokens: IUserWithTokens = await authService.login(user);
         const {accessToken, refreshToken, ...rest} = userWithTokens;
-        await setCookie('accesstoken', accessToken, {cookies});
-        await setCookie('refreshtoken', refreshToken, {cookies});
+        await setCookie('accessToken', accessToken, {cookies});
+        await setCookie('refreshToken', refreshToken, {cookies});
         await setCookie('currentUser', rest, {cookies});
         prevState.formData = userWithTokens;
         redirect('/');
