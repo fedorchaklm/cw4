@@ -7,7 +7,7 @@ img {
 }
 
 .details {
-    @apply border-solid py-2 px-2 min-w-52 rounded-lg bg-white text-black text-2xl text-center;
+    @apply border-solid py-2 px-2 min-w-80 rounded-lg bg-white text-black text-2xl text-center;
 }
 
 .details:hover {
