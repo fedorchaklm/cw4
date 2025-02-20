@@ -9,7 +9,7 @@ type LogoType = {
 
 const Logo: FC<LogoType> = ({img, alt}) => {
     return (
-        <Image className="logo" src={img} alt={alt} width={40} height={40} layout="intrinsic"/>
+        <Image className="logo" src={img} alt={alt} width={40} height={40}/>
     );
 };
 
